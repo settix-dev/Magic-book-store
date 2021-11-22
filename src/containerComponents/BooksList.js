@@ -1,22 +1,28 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Book from "../presentationalComponents/Book";
 
-const selectBooks = (state) => state.books;
+const state = (state) => state.booksCollection;
 
-const BooksList = () => {
-  const books = useSelector(selectBooks);
+const BooksList = ({ handleRemoveBook }) => {
+  const books = useSelector(state).books;
+  console.log(books);
 
+  const dispatch = useDispatch();
+
+  handleRemoveBook = (book) => {
+    console.log(`Book id: ${book.id} removed`);
+    dispatch({ type: "REMOVE_BOOK", payload: book });
+  };
+
+  // const {bookId, title, category} = book
   return (
     <div>
       <h3>Books List</h3>
-      {books.map((book) => (
-        <Book
-          key={book.id}
-          bookId={book.id}
-          title={book.bookTitle}
-          category={book.category}
-        />
+      {books.map((book, index) => (
+        <div key={index}>
+          <Book book={book} handleRemoveBook={handleRemoveBook} />
+        </div>
       ))}
     </div>
   );

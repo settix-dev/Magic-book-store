@@ -1,26 +1,30 @@
-import { booksCategories } from "../containerComponents/BooksForm";
 import { CREATE_BOOK, REMOVE_BOOK } from "../actions/index";
 
-const initialState = [];
-
-function nextBookId(books) {
-  const maxId = books.reduce((bookId, book) => Math.max(book.id, maxId), -1);
-  return maxId + 1;
-}
+const initialState = {
+  books: []
+};
 
 const booksReducer = (state = initialState, action) => {
   switch (action.type) {
     case CREATE_BOOK:
-      return [
+      console.log(state);
+      return {
         ...state,
-        {
-          id: nextBookId(state),
-          text: action.payload,
-          category: booksCategories[0], // initialized to this for now
-        },
-      ];
+        books: [
+          ...state.books,
+          {
+            id: Math.floor(Math.random() * 100) + 1,
+            text: action.payload.bookTitle,
+            category: action.payload.category,
+          },
+        ],
+      };
+
     case REMOVE_BOOK:
-      return [...state, state.filter((book) => state.id !== book.id)];
+      return {
+        ...state,
+        books: [...state.books.filter((book) => book.id !== action.payload.id)],
+      };
     default:
       return state;
   }

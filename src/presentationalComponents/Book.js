@@ -1,17 +1,30 @@
-const Book = ({bookId, title, category}) => {
-    return (
-        <div>
-           <table>
-                <tbody>
-                <tr>
-                <td>{bookId}</td>
-                <td>{title}</td>
-                <td>{category}</td>
-                </tr>
-                </tbody>
-            </table> 
-        </div>
-    )
-}
+import PropTypes from "prop-types";
 
-export default Book
+const Book = ({ book, handleRemoveBook }) => {
+  // const {bookId, title, category} = book
+  return (
+    <div>
+      <table>
+        <tbody>
+          <tr>
+            <td>{book.id}</td>
+            <td>{book.text}</td>
+            <td>{book.category}</td>
+            <td>
+              <button type="button" onClick={() => handleRemoveBook(book)}>
+                Remove Book
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
+Book.propTypes = {
+  book: PropTypes.object.isRequired,
+  handleRemoveBook: PropTypes.func,
+};
+
+export default Book;

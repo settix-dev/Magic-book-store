@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 
 export const booksCategories = [
   "Action",
@@ -12,15 +13,27 @@ export const booksCategories = [
 
 const BooksForm = () => {
   const [bookTitle, setBookTile] = useState("");
+  const [category, setCategory] = useState("");
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ bookTitle });
+    console.log({ bookTitle, category });
+
+    const book = { bookTitle: bookTitle, category: category };
+    console.log(book);
+    // Dispatch the "book created" action with the new book
+    dispatch({ type: "CREATE_BOOK", payload: book });
     setBookTile("");
+    setCategory("");
   };
 
   const handleChange = (e) => {
     setBookTile(e.target.value);
+  };
+
+  const handleSelect = (e) => {
+    setCategory(e.target.value);
   };
 
   return (
@@ -28,12 +41,13 @@ const BooksForm = () => {
       <h3>Books Form</h3>
       <form onSubmit={handleSubmit}>
         <input
+          name="bookTitle"
           type="text"
           placeholder="Book Title"
           value={bookTitle}
           onChange={handleChange}
         />
-        <select>
+        <select name="category" value={category} onChange={handleSelect}>
           {booksCategories.map((category, index) => (
             <option key={index} value={category}>
               {category}
