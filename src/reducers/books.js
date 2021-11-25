@@ -1,7 +1,12 @@
+import uuid from 'uuid'
 import { CREATE_BOOK, REMOVE_BOOK } from "../actions/index";
 
 const initialState = {
-  books: []
+  books: [
+    {id: uuid(), text: 'React', category: 'Learning'},
+    {id: uuid(), text: 'Napoleon', category: 'History'},
+    {id: uuid(), text: 'Parenting', category: 'Kids'}
+  ],
 };
 
 const booksReducer = (state = initialState, action) => {
@@ -13,7 +18,7 @@ const booksReducer = (state = initialState, action) => {
         books: [
           ...state.books,
           {
-            id: Math.floor(Math.random() * 100) + 1,
+            id: uuid(),
             text: action.payload.bookTitle,
             category: action.payload.category,
           },

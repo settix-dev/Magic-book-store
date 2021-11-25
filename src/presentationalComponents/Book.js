@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 
 const Book = ({ book, handleRemoveBook }) => {
-  // const {bookId, title, category} = book
   return (
     <div>
       <table>

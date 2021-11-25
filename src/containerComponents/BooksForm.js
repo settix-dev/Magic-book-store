@@ -12,24 +12,24 @@ export const booksCategories = [
 ];
 
 const BooksForm = () => {
-  const [bookTitle, setBookTile] = useState("");
+  const [bookTitle, setBookTitle] = useState("");
   const [category, setCategory] = useState("");
   const dispatch = useDispatch();
-
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log({ bookTitle, category });
 
     const book = { bookTitle: bookTitle, category: category };
     console.log(book);
+
     // Dispatch the "book created" action with the new book
     dispatch({ type: "CREATE_BOOK", payload: book });
-    setBookTile("");
+    setBookTitle("");
     setCategory("");
   };
 
   const handleChange = (e) => {
-    setBookTile(e.target.value);
+    setBookTitle(e.target.value);
   };
 
   const handleSelect = (e) => {
@@ -38,7 +38,7 @@ const BooksForm = () => {
 
   return (
     <div>
-      <h3>Books Form</h3>
+      <h3>ADD NEW BOOK</h3>
       <form onSubmit={handleSubmit}>
         <input
           name="bookTitle"
