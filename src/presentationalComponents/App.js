@@ -1,16 +1,19 @@
 import React from "react";
 import BooksForm from "../containerComponents/BooksForm";
 import BooksList from "../containerComponents/BooksList";
-import CategoryFilter from "./CategoryFilter";
+import "./App.css";
+import Footer from "./Footer";
+import Header from "./Header";
 
 const App = () => {
   return (
-    <div>
-      <h1>Magic Books Inc</h1>
+    <div className="container">
+      <Header />
       <BooksList />
       <div>
-      <BooksForm />
+        <BooksForm />
       </div>
+      <Footer />
     </div>
   );
 };
