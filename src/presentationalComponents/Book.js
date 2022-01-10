@@ -6,13 +6,38 @@ const Book = ({ book, handleRemoveBook }) => {
       <table>
         <tbody>
           <tr>
-            <td>{book.id}</td>
-            <td>{book.text}</td>
+            <td className="id" hidden={true}>
+              {book.id}
+            </td>
+            {/* <td>{book.text}</td> */}
+          </tr>
+          <tr>
             <td>{book.category}</td>
+          </tr>
+          <tr>
+            <td>{book.text}</td>
+          </tr>
+          <tr>
             <td>
-              <button type="button" onClick={() => handleRemoveBook(book)}>
+              <button className="btn">Comment</button>
+              <button
+                className="btn"
+                type="button"
+                onClick={() => handleRemoveBook(book)}
+              >
                 Remove Book
               </button>
+              <button className="btn">Edit</button>
+            </td>
+            <td>
+              <progress
+                className="progress-bar"
+                max={100}
+                value={70}
+                placeholder="UPDATE PROGRESS"
+              >
+                70%
+              </progress>
             </td>
           </tr>
         </tbody>
