@@ -37,9 +37,9 @@ const BooksForm = () => {
   };
 
   return (
-    <div>
+    <div className="div-form">
       <h3>ADD NEW BOOK</h3>
-      <form onSubmit={handleSubmit}>
+      <form className="form-control" onSubmit={handleSubmit}>
         <input
           name="bookTitle"
           type="text"
@@ -54,7 +54,7 @@ const BooksForm = () => {
             </option>
           ))}
         </select>
-        <button type="submit">Submit</button>
+        <button className="btn-primary" type="submit">Submit</button>
       </form>
     </div>
   );

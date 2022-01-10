@@ -40,15 +40,23 @@ const BooksList = () => {
     console.log(category);
     return filter === ""
       ? books.map((book, index) => (
-          <div key={index}>
-            <Book book={book} handleRemoveBook={handleRemoveBook} />
-          </div>
+        <div key={index} className="card">
+        <ul className="list-group list-group-flush">
+          <li className="list-group-item">
+          <Book book={book} handleRemoveBook={handleRemoveBook} />
+          </li>
+        </ul> 
+        </div>
         ))
       : books
           .filter((book) => book.category === filter)
           .map((book, index) => (
-            <div key={index}>
+            <div key={index} className="card">
+            <ul className="list-group list-group-flush">
+              <li className="list-group-item">
               <Book book={book} handleRemoveBook={handleRemoveBook} />
+              </li>
+            </ul> 
             </div>
           ));
   };
@@ -59,10 +67,12 @@ const BooksList = () => {
 
   return (
     <div>
-      <h3>Books List</h3>
+    {/* <h1>Heading</h1> */}
       {/* <CategoryFilter filter={filter} setCategory={setCategory} /> */}
       <CategoryFilter filter={filter} handleFilterChange={handleFilterChange} />
+      <div>
       {displayBook()}
+      </div>
     </div>
   );
 };
