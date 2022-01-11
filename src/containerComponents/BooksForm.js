@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, connect } from "react-redux";
+import { createBook } from "../actions";
 
 export const booksCategories = [
   "Action",
@@ -11,10 +12,11 @@ export const booksCategories = [
   "Sci-Fi",
 ];
 
-const BooksForm = () => {
+const BooksForm = (props) => {
   const [bookTitle, setBookTitle] = useState("");
   const [category, setCategory] = useState("");
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+  const {myCreateBook} = props
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log({ bookTitle, category });
@@ -23,7 +25,8 @@ const BooksForm = () => {
     console.log(book);
 
     // Dispatch the "book created" action with the new book
-    dispatch({ type: "CREATE_BOOK", payload: book });
+    // dispatch({ type: "CREATE_BOOK", payload: book });
+    myCreateBook(book);
     setBookTitle("");
     setCategory("");
   };
@@ -60,4 +63,12 @@ const BooksForm = () => {
   );
 };
 
-export default BooksForm;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    myCreateBook: (bookPayload) => {
+   dispatch( createBook(bookPayload))
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(BooksForm);

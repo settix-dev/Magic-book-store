@@ -1,30 +1,33 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch, connect } from "react-redux";
+import { changeFilter, removeBook } from "../actions";
 import Book from "../presentationalComponents/Book";
 import CategoryFilter from "../presentationalComponents/CategoryFilter";
 
 // Get state from the redux store
-const state = (state) => state.booksCollection;
-const filterState = (state) => state.filteredCategory;
+// const state = (state) => state.booksCollection;
+// const filterState = (state) => state.filteredCategory;
 
-const BooksList = () => {
+const BooksList = (props) => {
   const [category, setCategory] = useState("");
-
+const {myBooksCollection, myFilteredCategory, myRemoveBook, myChangeFilter} = props
   // Get books from the store
-  const books = useSelector(state).books;
+  // const books = useSelector(state).books;
+  const books = myBooksCollection.books
   console.log(books);
 
   // Store books in local storage
   localStorage.setItem("books", JSON.stringify(books));
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const handleRemoveBook = (book) => {
     console.log(`Book id: ${book.id} removed`);
-    dispatch({ type: "REMOVE_BOOK", payload: book });
+    myRemoveBook(book);
   };
 
-  const filter = useSelector(filterState).filter;
+  // const filter = useSelector(filterState).filter;
+  const filter = myFilteredCategory.filter
   console.log(filter);
 
   const handleFilterChange = (e) => {
@@ -62,8 +65,8 @@ const BooksList = () => {
   };
 
   useEffect(() => {
-    dispatch({ type: "CHANGE_FILTER", payload: category });
-  }, [dispatch, category]);
+    myChangeFilter(category);
+  }, [myChangeFilter, category]);
 
   return (
     <div>
@@ -77,4 +80,23 @@ const BooksList = () => {
   );
 };
 
-export default BooksList;
+const mapStateToProps = (state) => {
+ return {
+   myBooksCollection: state.booksCollection,
+   myFilteredCategory: state.filteredCategory
+ }
+}
+
+const mapDispatchToProps = (dispatch) => {
+ return {
+   myRemoveBook: (bookPayload) => {
+     dispatch( removeBook(bookPayload))
+   },
+
+   myChangeFilter: (filterPayload) => {
+   dispatch( changeFilter(filterPayload))
+   }
+ }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BooksList);
