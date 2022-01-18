@@ -34,11 +34,6 @@
     height: 100px;
 }
 
-.progress-bar {
-    /* -ms-progress-appearance: bar; */
-    /* -ms-progress-appearance: ring;    */
-}
-
 .circle-wrap {
     margin: 150px auto;
     width: 150px;
@@ -57,8 +52,15 @@
     border-radius: 0.2%;
 }
 
-.btn {
-    /* border-right: 0vmax; */
+span.d-flex {
+    font-size: 13px;
+    padding: 12px;
+    border: 1px solid #ccc;
+}
+
+.books-list-div {
+    background-color: rgba(0, 0, 0, 5%);
+    padding: 50px 80px;
 }
 
 .footer {
