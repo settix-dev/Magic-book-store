@@ -1,70 +1,112 @@
 .container {
-    display: block;
-    box-sizing: border-box;
-    background-color: beige;
-    width: 700px;
-    height:min-content
+  display: block;
+  box-sizing: border-box;
+  background-color: beige;
+  width: 700px;
+  height: min-content;
 }
 
 .header {
-    background-color: aquamarine;
-    box-sizing: content-box;
-    
+  background-color: aquamarine;
+  box-sizing: content-box;
 }
 
 .title {
-    text-align:left
+  text-align: left;
 }
 
 .div-form {
-    margin-bottom: 0px;
-}
-
-.form-control {
-    display: flex;
-    justify-content: space-between;
+  margin-bottom: 0px;
+  margin-top: 50px;
+  padding-top: 20px;
+  border-top: 1px solid #ccc;
 }
 
 .card {
-    margin-bottom: 2px;
-    /* height: 30px; */
+  margin-bottom: 2px;
 }
 
 .list-group-item {
-    height: 100px;
+  height: 100px;
 }
 
 .circle-wrap {
-    margin: 150px auto;
-    width: 150px;
-    height: 150px;
-    background: #fefcff;
-    border-radius: 50%;
-    border: 1px solid #cdcbd0;
-  }
+  margin: 150px auto;
+  width: 150px;
+  height: 150px;
+  background: #fefcff;
+  border-radius: 50%;
+  border: 1px solid #cdcbd0;
+}
 
 .id {
-    background-color: blue;
+  background-color: blue;
 }
 
 .btn-primary {
-    width: 100px;
-    border-radius: 0.2%;
+  width: 150px;
+  border-radius: 5px;
 }
 
 span.d-flex {
-    font-size: 13px;
-    padding: 12px;
-    border: 1px solid #ccc;
+  font-size: 13px;
+  padding: 12px;
+  border: 1px solid #ccc;
+}
+
+header {
+  width: 80%;
 }
 
 .books-list-div {
-    background-color: rgba(0, 0, 0, 5%);
-    padding: 50px 80px;
+  background-color: rgba(0, 0, 0, 5%);
+  padding: 50px 80px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.author-p {
+  font-size: 12px;
+}
+.btn {
+  font-size: 12px;
+  outline: none;
+}
+
+.rm-btn {
+  border-left: 1px solid #aaa;
+  border-right: 1px solid #aaa;
+}
+
+.current-chapter-div {
+  font-size: 12px;
+  color: #aaa;
+}
+
+.current-chapter-div > span {
+  color: #555;
+}
+
+.current-chapter-div > .w-100 {
+  font-size: 12px;
+  border-radius: 3px;
+}
+
+.book-title-input,
+.book-select {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 12px;
+  outline: none;
+}
+
+.book-title-input::placeholder {
+  color: #ddd;
 }
 
 .footer {
-    text-align: center;
-    height: 100px;
-    margin-top: 50px;
+  text-align: center;
+  margin-top: 50px;
+  font-style: italic;
 }
