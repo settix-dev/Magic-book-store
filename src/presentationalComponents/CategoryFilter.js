@@ -11,7 +11,7 @@ export const filterCategories = [
 const CategoryFilter = ({ category, handleFilterChange }) => {
   return (
     <div>
-    <label>Books</label>
+    <label className="mx-5">Books</label>
       <select
         value={category}
         // onChange={(e) => setCategory(e.target.value === 'All' ? '' : e.target.value)}
