@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { useDispatch, connect } from "react-redux";
+import { Button } from "react-bootstrap";
+import { connect } from "react-redux";
 import { createBook } from "../actions";
 
 export const booksCategories = [
@@ -12,16 +13,19 @@ export const booksCategories = [
   "Sci-Fi",
 ];
 
+const authors = ["John", "Joe", "Michael", "Judith", "Rosco"];
 const BooksForm = (props) => {
   const [bookTitle, setBookTitle] = useState("");
   const [category, setCategory] = useState("");
   // const dispatch = useDispatch();
-  const {myCreateBook} = props
+  const { myCreateBook } = props;
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log({ bookTitle, category });
 
-    const book = { bookTitle: bookTitle, category: category };
+    let progress = Math.round(Math.random() * 100);
+    let author = authors[Math.round(Math.random() * 4)];
+    const book = { bookTitle, category, progress: `${progress}%`, author };
     console.log(book);
 
     // Dispatch the "book created" action with the new book
@@ -41,23 +45,36 @@ const BooksForm = (props) => {
 
   return (
     <div className="div-form">
-      <h3>ADD NEW BOOK</h3>
-      <form className="form-control" onSubmit={handleSubmit}>
+      <h4 className="text-secondary">ADD NEW BOOK</h4>
+      <form
+        className="book-form d-flex justify-content-between align-items-center"
+        onSubmit={handleSubmit}
+      >
         <input
           name="bookTitle"
           type="text"
-          placeholder="Book Title"
+          placeholder="Type book title here"
           value={bookTitle}
           onChange={handleChange}
+          className="w-50 py-2 px-3 book-title-input text-secondary"
         />
-        <select name="category" value={category} onChange={handleSelect}>
+
+        <select
+          className="w-25 book-select py-2 px-3 text-secondary mx-4"
+          name="category"
+          value={category}
+          onChange={handleSelect}
+        >
           {booksCategories.map((category, index) => (
             <option key={index} value={category}>
               {category}
             </option>
           ))}
         </select>
-        <button className="btn-primary" type="submit">Submit</button>
+
+        <Button className="btn-primary submit-btn w-25" type="submit">
+          Submit
+        </Button>
       </form>
     </div>
   );
@@ -66,9 +83,9 @@ const BooksForm = (props) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     myCreateBook: (bookPayload) => {
-   dispatch( createBook(bookPayload))
-    }
-  }
-}
+      dispatch(createBook(bookPayload));
+    },
+  };
+};
 
 export default connect(null, mapDispatchToProps)(BooksForm);
